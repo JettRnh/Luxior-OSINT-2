@@ -1,9 +1,11 @@
-
 # Luxior OSINT — Production Intelligence Framework
 
 **Owner:** Jet  
-**GitHub:** JettRnh  
-**TikTok:** @jettinibos_
+**GitHub:** https://github.com/JettRnh  
+**Repository:** https://github.com/JettRnh/Luxior-OSINT-2  
+**TikTok:** https://www.tiktok.com/@jettinibos_?_r=1&_t=ZS-957TcwUzSWf
+**Discord:** @jeet07685
+
 
 ---
 
@@ -79,32 +81,32 @@ So I built something that actually works for real investigations.
 ```bash
 sudo apt update
 sudo apt install -y build-essential golang rustc cargo nodejs npm python3 python3-pip redis-server postgresql tor
-```
 
 macOS:
 
-```bash
 brew install go rust node python redis postgresql tor
-```
+
+
+---
 
 Installation
 
-```bash
-git clone https://github.com/JettRnh/luxior-osint.git
-cd luxior-osint
+git clone https://github.com/JettRnh/Luxior-OSINT-2.git
+cd Luxior-OSINT-2
 chmod +x scripts/setup.sh
 ./scripts/setup.sh
 make build
 make setup-db
 make run
-```
+
+
+---
 
 Docker (Production)
 
-```bash
 make docker-build
 make docker-up
-```
+
 
 ---
 
@@ -112,11 +114,14 @@ API Usage
 
 Authentication
 
-All endpoints require Bearer token. Default token: luxior-secret-token (change in .env)
+All endpoints require Bearer token.
+Default token: luxior-secret-token (change in .env)
+
+
+---
 
 Start a Scan
 
-```bash
 curl -X POST http://localhost:8080/api/v1/scan \
   -H "Authorization: Bearer luxior-secret-token" \
   -H "Content-Type: application/json" \
@@ -127,20 +132,22 @@ curl -X POST http://localhost:8080/api/v1/scan \
     "modules": ["dns", "port", "web", "darkweb"],
     "priority": 5
   }'
-```
+
+
+---
 
 Check Status
 
-```bash
 curl http://localhost:8080/api/v1/scan/{scan_id} \
   -H "Authorization: Bearer luxior-secret-token"
-```
+
+
+---
 
 Health Check
 
-```bash
 curl http://localhost:8080/api/v1/health
-```
+
 
 ---
 
@@ -148,32 +155,31 @@ Command Line Tools
 
 C++ Network Probe
 
-```bash
 ./cmd/probe/lux_probe example.com 1 65535
-```
 
 Output:
 
-```
 DNS_RESULTS
 93.184.216.34
 SCAN_START 93.184.216.34 1 65535
 PORT_OPEN 80|HTTP/1.0 200 OK
 PORT_OPEN 443|
 SCAN_COMPLETE 2
-```
+
+
+---
 
 Go Web Crawler
 
-```bash
 ./cmd/crawler/lux_crawler -target https://example.com -depth 3 -max 1000
-```
+
+
+---
 
 Rust Data Parser
 
-```bash
 ./cmd/parser/lux_parser ./data/
-```
+
 
 ---
 
@@ -181,31 +187,35 @@ Performance
 
 On a 4-core, 8GB VPS:
 
-· C++ probe: 1000 ports scanned in < 10 seconds
-· Go crawler: 500 pages per minute with 20 concurrent workers
-· Rust parser: 10,000 files processed in < 2 seconds
-· System: Can handle 10+ simultaneous scans with 3 workers
+C++ probe: 1000 ports scanned in < 10 seconds
+
+Go crawler: 500 pages per minute (20 workers)
+
+Rust parser: 10,000 files processed in < 2 seconds
+
+System: 10+ simultaneous scans with 3 workers
+
+
 
 ---
 
 Repository Structure
 
-```
-luxior-osint/
+Luxior-OSINT-2/
 ├── cmd/
-│   ├── probe/main.cpp      # C++ network scanner
-│   ├── crawler/main.go     # Go web crawler
-│   └── parser/main.rs      # Rust data parser
-├── api/main.py             # FastAPI backend
-├── pkg/queue/worker.py     # Redis worker
-├── scripts/setup.sh        # One-click setup
-├── docker/                 # Docker + compose files
-├── Makefile                # Build commands
-├── go.mod                  # Go dependencies
-├── Cargo.toml              # Rust dependencies
-├── requirements.txt        # Python packages
-└── .env.example            # Environment template
-```
+│   ├── probe/main.cpp
+│   ├── crawler/main.go
+│   └── parser/main.rs
+├── api/main.py
+├── pkg/queue/worker.py
+├── scripts/setup.sh
+├── docker/
+├── Makefile
+├── go.mod
+├── Cargo.toml
+├── requirements.txt
+└── .env.example
+
 
 ---
 
@@ -213,24 +223,37 @@ Real Use Cases
 
 1. Investigate Suspicious Domain
 
-```bash
-curl -X POST http://localhost:8080/api/v1/scan -d '{"target": "suspicious.com"}'
-# Get: IPs, open ports, emails, subdomains, darkweb mentions
-```
+curl -X POST http://localhost:8080/api/v1/scan \
+  -d '{"target": "suspicious.com"}'
+
+
+---
 
 2. Monitor 1000 Domains
 
-· Submit all to Redis queue
-· Workers process in parallel
-· Results stored in PostgreSQL
-· Webhook alerts on new findings
+Submit all to Redis queue
+
+Workers process in parallel
+
+Results stored in PostgreSQL
+
+Webhook alerts on new findings
+
+
+
+---
 
 3. Darkweb Threat Intelligence
 
-· Tor crawler runs hourly
-· Searches for keywords, domains, emails
-· Alerts on credential leaks
-· Elasticsearch indexing
+Tor crawler runs hourly
+
+Keyword monitoring
+
+Credential leak alerts
+
+Elasticsearch indexing
+
+
 
 ---
 
@@ -238,15 +261,14 @@ Credits
 
 Built by Jet for real intelligence work.
 
-· GitHub: JettRnh
-· TikTok: @jettinibos_
+GitHub: https://github.com/JettRnh
 
-If you use this for something interesting, tag me. I'd like to see what you build.
+TikTok: @jettinibos_
+
+
 
 ---
 
 License
 
 MIT — Use it, break it, fix it. Just don't blame me.
-
-```
