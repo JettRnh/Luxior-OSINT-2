@@ -1,0 +1,11 @@
+cmd/probe/lux_probe
+cmd/crawler/lux_crawler
+cmd/parser/lux_parser
+*.db
+*.sqlite
+__pycache__/
+*.pyc
+cmd/parser/target/
+node_modules/
+.env
+lux_parser_output.json
