@@ -259,7 +259,7 @@ Elasticsearch indexing
 
 Credits
 
-Built by Jet for real intelligence work.
+Built by 
 
 GitHub: https://github.com/JettRnh
 
