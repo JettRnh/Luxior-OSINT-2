@@ -1,4 +1,4 @@
-```markdown
+
 # Luxior OSINT — Production Intelligence Framework
 
 **Owner:** Jet  
